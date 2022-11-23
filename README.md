@@ -1,2 +1,2 @@
-# onboarding-api
-remote repo for BigCo onboardingAPI project
+# onboarding API Project
+This project contains files related the BigCo Onboarding API
