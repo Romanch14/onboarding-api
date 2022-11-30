@@ -17,10 +17,17 @@
     "bigco",
     "cool",
     "ascii",
-    "faces"
+    "faces",
+    "company",
+    "account",
+    "activity"
   ],
-  "author": "Jan Devsmith <jdevsmith@example.org>",
+  "author": "Rom14",
   "license": "ISC",
+  "assets" : {
+    "diagram" : "OnboardingAPI.png",
+    "alps" : "OnboardingAPI.json",
+    "apiDocs" : "Onboarding.md"},
   "bugs": {
     "url": "https://github.com/studyhard14/onboarding-api/issues"
   },
