@@ -1,0 +1,89 @@
+alps:
+  version: '1.0'
+  title: "Onboarding API"
+  doc: 
+    type: "markdown"
+    value: "This is the ALPS document for BigCo's **Onboarding API**"
+
+  descriptor:
+    # vocabulary properties
+    - id: "identifier" 
+      type: "semantic"
+      
+    - id: "companyName" 
+      type: "semantic"
+    
+    - id: "email" 
+      type: "semantic"
+      
+    - id: "telephone" 
+      type: "semantic"
+      
+    - id: "status" 
+      type: "semantic"
+      
+    - id: "maxValue" 
+      type: "semantic"
+      
+    - id: "discount" 
+      type: "semantic"
+     
+    # reference grouping
+    - id: "wip"
+      type: "group"
+      descriptor: 
+        - href: "#identifier"
+        - href: "#companyName"
+        - href: "#email"
+        - href: "#telephone"
+        - href: "#status"
+        - href: "#maxValue"
+        - href: "#discount"
+
+    # actions
+    - id: "startOnboarding"
+      type: "unsafe"
+      rt: "wip"
+
+    - id: "collectCompanyData"
+      type: "safe"
+      rt: "wip"
+      descriptor: 
+        - href: "#identifier"
+        # more properties go here...
+
+    - id: "SaveToWIP"
+      type: "idempotent"
+      rt: "wip"
+      descriptor:
+        - href: "#identifier"
+        - href: "#companyName"
+        - href: "#email"
+        - href: "#telephone"
+        - href: "#status"
+        - href: "#maxValue"
+        - href: "#discount"
+
+    - id: "collectAccountData"
+      type: "safe"
+      rt: "wip"
+      descriptor:
+        - href: "#identifier"
+        # more properties go here...
+
+    - id: "completeOnboarding"
+      type: "idempotent"
+      rt: "wip"
+      descriptor:
+        - href: "#identifier"
+
+    - id: "abandonOnboarding"
+      type: "idempotent"
+      rt: "wip"
+      descriptor:
+        - href: "#identifier"
+
+    - id: "goHome"
+      type: "safe"
+      
+     
