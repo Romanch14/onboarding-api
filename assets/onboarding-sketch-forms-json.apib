@@ -1,0 +1,205 @@
+FORMAT: 1A
+HOST: http://onboarding.example.org/
+
+# Onboarding API (FORMS+JSON)
+
+Onboarding API for BigCo, Inc.
+
+This is a fORMS+JSON API sketch
+
+## Home [/]
+
+### Show Home Page [GET]
+
++ Response 200 (application/forms+json)
+
+    + Body
+
+            {
+              "home": [
+                {
+                  "title":"Show Home Page",
+                  "forms":[
+                    {"name":"list", "href":"/list", "method":"get", "properties":[]}
+                  ],
+                  "items":[
+                  ]
+                }
+              ]
+            }
+
+## Onboarding List [/list]
+
+### Show Onboarding Record List [GET]
+
++ Response 200 (application/forms+json)
+
+    + Body
+
+            {
+              "home" : [
+                {
+                  "title":"Show Onboarding Record List",
+                  "forms":[
+                    {"name":"list", "href":"/list"},
+                    {"name":"create", "href":"/list", "method":"post",
+                      "properties":[
+                        {"name":"id","value":"1q12w3e4r5t"}
+                      ]
+                    }
+                  ],
+                  "items":[
+                    {"id" : "1q2w3e4r5t", "href" : "/1q2w3e4r5t", "status":"pending", "other-proprrties" : "..."}
+                  ]
+                }
+              ]
+            }
+
+### Create Onboarding Record [POST]
+
++ Request (application/x-www-form-urlencoded)
+
+            onboardingId=1q2w3e4r5t
+
++ Response 201 (application/forms+json)
+
+    + Header 
+        
+            Location: /1q2w3e4r5t
+
+    + Body
+
+            {
+              "home" : [
+                {
+                  "title":"ITEM:1q2w3e4r5t Created",
+                  "forms":[
+                    {"name":"list", "href":"/list"}
+                  ],
+                  "items":[
+                    {"id" : "1q2w3e4r5t", "href" : "/1q2w3e4r5t", "other-properties" : "..."}
+                  ]
+                }
+              ]
+            }
+
+# Onboarding Record [/1q2w3e4r5t]
+
+### Show Onboarding Record [GET]
+
++ Response 200 (application/forms+json)
+
+    + Body
+
+            {
+              "home" : [
+                {
+                  "title":"ITEM:1q2w3e4r5t",
+                  "forms":[
+                    {"name":"list", "href":"/list"},
+                    {"name":"collectCompanyInfo", "href":"/1q2w3e4r5t","method":"patch",
+                      "properties":[
+                        {"name":"id", "value":"1q2w3e4r5t"},
+                        {"name":"href", "value":"/1q2w3e4r5t"},
+                        {"name":"status", "value":"pending"},
+                        {"name":"company-properties", "value":"..."}
+                      ]
+                    },
+                    {"name":"collectAccountInfo", "href":"/1q2w3e4r5t","method":"patch",
+                      "properties":[
+                        {"name":"id", "value":"1q2w3e4r5t"},
+                        {"name":"href", "value":"/1q2w3e4r5t"},
+                        {"name":"status", "value":"pending"},
+                        {"name":"account-properties", "value":"..."}
+                      ]
+                    },
+                    {"name":"collectionActivityInfo", "href":"/1q2w3e4r5t","method":"patch",
+                      "properties":[
+                        {"name":"id", "value":"1q2w3e4r5t"},
+                        {"name":"href", "value":"/1q2w3e4r5t"},
+                        {"name":"status", "value":"pending"},
+                        {"name":"activity-properties", "value":"..."}
+                      ]
+                    },
+                    {"name":"approveRecord", "href":"/approve","method":"patch",
+                      "properties":[
+                        {"name":"id","value":"1q2w3e4r5t"},
+                        {"name":"status","value":"active"}
+                      ]
+                    },
+                    {"name":"rejectRecord", "href":"/reject","method":"post",
+                      "properties":[
+                        {"name":"id","value":"1q2w3e4r5t"},
+                        {"name":"status","value":"closed"}
+                      ]
+                    }
+                  ],
+                  "items":[
+                    {"id" : "1q2w3e4r5t", "href" : "/1q2w3e4r5t", "status":"pending", "other-properties" : "..."}
+                  ]
+                }
+              ]
+            }
+
+#### Update Onboarding Record [PATCH]
+
++ Request (application/x-www-form-urlencoded)
+
+        onboardingId=1q2w3e4r5t&other-properties="..."
+
++ Response 302 (application/forms+json)        
+
+    + Headers
+    
+            Location: /1q2w3e4r5t
+
+## Approve Onboarding [/approve]
+
+### Approve Onboarding Record [PATCH]
+
++ Request
+
+            onboardingid=1q2w3e4r5t&status=active
+
++ Response 200 (application/forms+json)
+
+    + Body
+
+            {
+              "home" : [
+                {
+                  "title":"ITEM:1q2w3e4r5t Approved",
+                  "forms":[
+                    {"name":"list", "href":"/list"}
+                  ],
+                  "items":[
+                  ]
+                }
+              ]
+            }
+
+## Reject Onboarding [/reject]
+
+### Reject Onboarding Record [PATCH]
+
++ Request
+
+            onboardingid=1q2w3e4r5t&status=closed
+
++ Response 200 (application/forms+json)
+
+    + Body
+
+            {
+              "home" : [
+                {
+                  "title":"ITEM:1q2w3e4r5t Rejected",
+                  "forms":[
+                    {"name":"list", "href":"/list"}
+                  ],
+                  "items":[
+                  ]
+                }
+              ]
+            }
+

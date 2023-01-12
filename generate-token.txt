@@ -1,0 +1,8 @@
+curl --request POST \
+  --url dev-vi8mp6bwx3k45g1v.us.auth0.com/oauth/token \
+  --header 'content-type: application/json' \
+  --data '{"client_id":"uT5kYwEsrd6SAxn58fVdMxZMmnyBqgbN",
+           "client_secret":"cRvXTda0oqz0UFZDn6chQRXSrpKYcS--igRI76X2tDoxGd9xStP-Qn13uIPd5Rbr",
+           "audience":"http://mamund.com/bigco-company",
+           "grant_type":"client_credentials"
+          }'

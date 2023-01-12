@@ -1,0 +1,78 @@
+FORMAT: 1A
+HOST: http://onboarding.example.org/
+
+# Onboarding API
+
+Onboarding API for BigCo, Inc
+
+## Home [/]
+
+### Show Home Page [GET]
+
++ Response 200 (text/plain)
+
+        HOME
+
+## Onboarding List [/list]
+
+### Show Onboarding Record List [GET]
+
++ Response 200 (text/pain)
+
+        LIST
+
+## Onboarding Create Form [/create]
+
+### Show Onboarding Create Form [GET]
++ Response 200 (text/html)
+
+        CREATE-FORM
+
+# Onboarding Record [/1q2w3e4r5t]
+
+### Show Onboarding Record [GET]
+
++ Response 200 (text/plain)
+
+        ITEM:1q2w3e4r5t
+
+## Add Company Info [/1q2w3e4r5t/company]
+
+### Show Company Info Form [GET]
+
++ Response 200 (application/json)
+
+        COMPANY-INFO-FORM
+
+## Add Account Info [/{onboardingId}/account]
+
+### Show Account Info Form [GET]
+
++ Response 200 (text/plain)
+
+        ACCOUNT-INFO-FORM
+
+## Add Activity Info [/{onboardingId}/activity]
+
+### Show Activity Info Form [GET]
+
++ Response 200 (text/plain)
+
+        ACTIVITY-INFO-FORM
+
+## Approve Onboarding [/{onboardingId}/approve]
+
+### Show Approve Form [GET]
+
++ Response 200 (text/plain)
+
+        APPROVE-ONBOARDING-FORM
+        
+## Reject Onboarding [/{onboardingId}/reject]
+
+### Show Reject Form [GET]
+
++ Response 200 (text/plain)
+
+        REJECT-ONBOARDING-FORM
+

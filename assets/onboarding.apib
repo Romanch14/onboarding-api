@@ -1,0 +1,230 @@
+FORMAT: 1A
+HOST: http://onboarding.example.org/
+
+# Onboarding API
+
+Onboarding API for BigCo, Inc
+
+## Home [/]
+
+### Show Home Page [GET]
+
++ Response 200 (application/json)
+
+        {
+            "home":[]
+        }
+
+## Onboarding List [/list]
+
+### Show Onboarding Record List [GET]
+
++ Response 200 (application/json)
+
+        {
+            "list":[]
+        }
+
+### Create a new Onboarding Record [POST]
+
++ Request (application/x-www-form-urlencoded)
+
+        onboardingId="1q2w3e4r5t"
+        
++ Response 201 (application/json)   
+    
+    + Headers
+        
+            Location: /{onboardingId}
+            
+    + Body
+
+            {
+                "item":[
+                    {"onboardingId":"1q2w3e4r5t"}
+                ]
+            }
+
+## Onboarding Record [/1q2w3e4r5t]
+
+### Show Onboarding Record [GET]
+
++ Response 200 (application/json)
+
+        {
+            "items" : [
+                {"onboardingId":"1q2w3e4r5t"}
+            ]
+        }
+
+### Update Onboarding Record [PATCH]
+
++ Request (application/x-www-form-urlencoded)
+
+        onboardingId=1q2w3e4r5t&other-properties=...
+ 
++ Response 200 (application/json)
+
+        {
+            "items" : [
+                {"onboardingId":"1qw2w3e4r5t",
+                  "other-properties" : "..."}
+            ]
+        }
+	    
+## Add Company Info [/1q2w3e4r5t/company]
+
+### Show Company Info Form [GET]
+
++ Response 200 (application/json)
+
+        {
+            "company-form":[]
+        }   
+
+### Submit Company Info [PUT]
+
++ Request (application/x-www-form-urlencoded)
+
+        onboardingId="1q2w3e4r5t"
+        
++ Response 200 (application/json)
+
+        {
+            "items":[
+                {
+                    "onboardingId" : "1q2w3e4r5t",
+                    "companyInfo" : "true"
+                }
+            ]
+        }
+
+## Add Account Info [/{onboardingId}/account]
+
+### Show Account Info Form [GET]
+
++ Response 200 (application/json)
+
+        {
+            "account-form":[]
+        }
+
+### Submit Account Info [PUT]
+
++ Request (application/x-www-form-urlencoded)
+
+        onboardingId="1q2w3e4r5t"
+
++ Response 200 (application/json)
+
+        {
+            "items":[
+                {
+                    "onboardingId" : "1q2w3e4r5t",
+                    "accountInfo" : "true"
+                }
+            ]
+        }
+        
+## Add Activity Info [/{onboardingId}/activity]
+
+### Show Activity Info Form [GET]
+
++ Response 200 (application/json)
+
+        {
+            "activity-form":[]
+        }
+
+### Submit Activity Info [PUT]
+
++ Request (application/x-www-form-urlencoded)
+
+        onboarding="1q2w3e4r5t"
+        
++ Response 200 (application/json)
+
+        {
+            "items":[
+                {
+                    "onboardingId" : "1q2w3e4r5t",
+                    "activityInfo" : "true"
+                }
+            ]
+        }
+
+## Approve Onboarding [/{onboardingId}/approve]
+
+### Show Approve Form [GET]
+
++ Response 200 (application/json)
+
+        {
+            "items":[
+                {
+                    "onboardingId" : "1q2w3e4r5t",
+                    "companyInfo" : "true",
+                    "accountInfo" : "true",
+                    "activityInfo" : "true"
+                }
+            ]
+        }
+
+### Submit Approve Form [PUT]
+
++ Request (application/x-www-form-urlencoded)
+
+        status=active
+        
++ Response 200 (application/json)
+
+        {
+            "onboarding" : [
+            "items":[
+                {
+                    "onboardingId" : "1q2w3e4r5t",
+                    "companyInfo" : "true",
+                    "accountInfo" : "true",
+                    "activityInfo" : "true",
+                    "status" : "active"
+                }
+            ]
+        }
+        
+## Reject Onboarding [/{onboardingId}/reject]
+
+### Show Reject Form [GET]
+
++ Response 200 (application/json)
+
+        {
+            "items":[
+                {
+                    "onboardingId" : "1q2w3e4r5t",
+                    "companyInfo" : "true",
+                    "accountInfo" : "true",
+                    "activityInfo" : "true"
+                }
+            ]
+        }
+
+### Send Reject Form [PUT]
+
++ Request (application/x-www-form-urlencoded)
+
+        status=closed
+        
++ Response 200 (application/json)   
+    
+        {
+            "items":[
+                {
+                    "onboardingId" : "1q2w3e4r5t",
+                    "companyInfo" : "true",
+                    "accountInfo" : "true",
+                    "activityInfo" : "true",
+                    "status" : "closed"
+                }
+            ]
+        }
+

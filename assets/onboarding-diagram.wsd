@@ -1,0 +1,17 @@
+home -> listOnboardings:
+listOnboardings --> home:
+listOnboardings -> createOnboardingF:
+createOnboardingF --> listOnboardings:
+listOnboardings -> readOnboarding:
+readOnboarding --> listOnboardings:
+readOnboarding -> addCompanyInfoF:
+addCompanyInfoF --> readOnboarding:
+readOnboarding -> addAccountInfoF:
+addAccountInfoF --> readOnboarding:
+readOnboarding -> addActivityInfoF:
+addActivityInfoF --> readOnboarding:
+readOnboarding -> approveOnboardingF:
+approveOnboardingF --> readOnboarding:
+readOnboarding -> rejectOnboardingF:
+rejectOnboardingF --> readOnboarding:
+

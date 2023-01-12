@@ -11,7 +11,7 @@ openapi: 3.0.0
 info:
   version: '1.0.0'
   title: 'BigCo Onboarding API'
-  description: 'This is the OAS document for BigCo **Onboarding API**'
+  description: 'This is the final OAS document for BigCo **Onboarding API**'
 
 tags:
   - name: onboarding
@@ -224,7 +224,7 @@ paths:
   /wip/{identifier}/status:
     get:
       operationId: getStatus
-      summary: Use this to get the status for this WIP recxord
+      summary: Use this to get the status for this WIP record
       tags:
       - onboarding
     

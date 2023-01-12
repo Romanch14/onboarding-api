@@ -1,0 +1,51 @@
+newman
+
+Company API Home Tests
+
+→ Company Home
+  GET http://company-atk.herokuapp.com [503 Service Unavailable, 715B, 902ms]
+
+→ Company Create (missing properties)
+  POST http://company-atk.herokuapp.com [503 Service Unavailable, 715B, 622ms]
+  1. Status is 400
+  2. Content-Type includes application/problem+json
+  3⠄ JSONError in test-script
+
+┌─────────────────────────┬─────────────────────┬────────────────────┐
+│                         │            executed │             failed │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│              iterations │                   1 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│                requests │                   2 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│            test-scripts │                   1 │                  1 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│      prerequest-scripts │                   0 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│              assertions │                   2 │                  2 │
+├─────────────────────────┴─────────────────────┴────────────────────┤
+│ total run duration: 1716ms                                         │
+├────────────────────────────────────────────────────────────────────┤
+│ total data received: 1.01kB (approx)                               │
+├────────────────────────────────────────────────────────────────────┤
+│ average response time: 762ms [min: 622ms, max: 902ms, s.d.: 140ms] │
+└────────────────────────────────────────────────────────────────────┘
+
+  #  failure         detail                                                                    
+                                                                                               
+ 1.  AssertionError  Status is 400                                                             
+                     expected 503 to equal 400                                                 
+                     at assertion:0 in test-script                                             
+                     inside "Company Create (missing properties)"                              
+                                                                                               
+ 2.  AssertionError  Content-Type includes application/problem+json                            
+                     expected 'text/html; charset=utf-8' to include 'application/problem+json' 
+                     at assertion:1 in test-script                                             
+                     inside "Company Create (missing properties)"                              
+                                                                                               
+ 3.  JSONError                                                                                 
+                     Unexpected token '<' at 1:1                                               
+                     <!DOCTYPE html>                                                           
+                     ^                                                                         
+                     at test-script                                                            
+                     inside "Company Create (missing properties)"                              

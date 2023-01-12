@@ -1,0 +1,194 @@
+<!--
+ ! Excerpted from "Design and Build Great Web APIs",
+ ! published by The Pragmatic Bookshelf.
+ ! Copyrights apply to this code. It may not be used to create training material,
+ ! courses, books, articles, and the like. Contact us if you are in doubt.
+ ! We make no guarantees that this code is fit for any purpose.
+ ! Visit http://www.pragmaticprogrammer.com/titles/maapis for more book information.
+-->
+<alps version="1.0">
+  <title>Onboarding Profile</title>
+  <doc>
+    This is the vocabulary document for BigCo, Inc. Onboarding API
+  </doc>
+
+  <!-- actions -->
+  <descriptor id="listOnboardings" type="safe" rt="#onboarding" text="return list of onboarding records"/>
+
+  <descriptor id="createOnboarding" type="unsafe" rt="#onboarding" text="start a new onboarding record">
+    <descriptor href="#onboardingStart" />
+  </descriptor>
+  
+  <descriptor id="readOnboarding" type="safe" rt="#onboarding" text="read an existing onboarding record">
+    <descriptor href="#id" />
+  </descriptor>
+
+  <descriptor id="addCompanyInfo" type="idempotent" rt="#onboarding" text="add company info to onboarding record">
+    <descriptor href="#companyInfo" />
+  </descriptor>
+
+  <descriptor id="addAccountInfo" type="idempotent" rt="#onboarding" text="add account info to onboarding record">
+    <descriptor href="#accountInfo" />
+  </descriptor>
+
+  <descriptor id="addActivityInfo" type="idempotent" rt="#onboarding" text="add activity info to onboarding record">
+    <descriptor href="#activityInfo" />
+  </descriptor>
+
+  <descriptor id="approveOnboarding" type="idempotent" rt="#onboarding" text="approve selected onboarding record">
+    <descriptor href="#statusInfo" text="status MUST be set to active"/>
+  </descriptor>
+
+  <descriptor id="rejectOnboarding" type="idempotent" rt="#onboarding" text="reject selected onboarding record">
+    <descriptor href="#statusInfo" text="status MUST be set to closed"/>
+  </descriptor>
+
+  <!-- properties -->
+  <descriptor id="id" type="semantic" text="unique identifier for this record" />
+  <descriptor id="companyId" type="semantic" text="unique identifier for the related company record" />
+  <descriptor id="companyName" type="semantic" text="name of the associated company" />
+  <descriptor id="streetAddress" type="semantic" text="street mailing address" />
+  <descriptor id="city" type="semantic" text="city mailing address" />
+  <descriptor id="stateProvince" type="semantic" text="state/province for mailing" />
+  <descriptor id="postalCode" type="semantic" text="postal code for mailing" />
+  <descriptor id="country" type="semantic" text="country name for mailing" />
+  <descriptor id="telephone" type="semantic" text="international dialing string" />
+  <descriptor id="email" type="semantic" text="email address for associated company" />
+  <descriptor id="accountId" type="semantic" text="unique id for the associated account record" />
+  <descriptor id="division" type="semantic" text="division code for the account">
+    <doc>
+      The value for this field MUST be one of the following: 
+        DryGoods, Hardware, Software, Pharmacy, Military
+    </doc>
+  </descriptor>
+  <descriptor id="spendingLimit" type="semantic" text="initial account spending limit in dollars" />
+  <descriptor id="discountPercentage" type="semantic" text="initial discount value (1-100)" />  
+  <descriptor id="activityId" type="semantic" text="unique identifier for the associated activity record" />  
+  <descriptor id="activityType" type="semantic" text="type code for the activity">
+    <doc>
+      The value for this field MUST be one of the following:
+        email, inperson, phone, letter
+    </doc>
+  </descriptor>  
+  <descriptor id="dateScheduled" type="semantic" text="scheduled action date in GMT" />  
+  <descriptor id="notes" type="semantic" text="per/post activity notes" />  
+  <descriptor id="status" type="semantic" text="status code for this onboarding record">
+    <doc>
+      The value for this field MUST be one of the following:
+        pending, active, closed
+    </doc>
+  </descriptor> 
+  <descriptor id="dateCreated" type="semantic" text="date (GMT) this onboarding record was first created" />
+  <descriptor id="dateUpdated" type="semantic" text="date (GMT) this onboarding record was last updated" />  
+
+  <!-- containers -->
+  <descriptor id="onboarding" type="semantic" text="container for onboarding interactions">
+    <descriptor href="#id" />
+    <descriptor href="#companyId" />
+    <descriptor href="#companyName" />
+    <descriptor href="#streetAddress" />
+    <descriptor href="#city" />
+    <descriptor href="#stateProvince" />
+    <descriptor href="#postalCode" />
+    <descriptor href="#country" />
+    <descriptor href="#telephone" />
+    <descriptor href="#email" />
+    <descriptor href="#accountId" />
+    <descriptor href="#division" />
+    <descriptor href="#spendingLimit" />
+    <descriptor href="#discountPercentage" />
+    <descriptor href="#activityId" />
+    <descriptor href="#activityType" />
+    <descriptor href="#dateScheduled" />
+    <descriptor href="#notes" />
+    <descriptor href="#status" />
+    <descriptor href="#dateCreated" />
+    <descriptor href="#dateUpdated" />
+  </descriptor>
+  
+  <descriptor id="onboardingStart" type="semantic" text="properties for starting onboarding record">
+    <descriptor href="#id" text="optionally client-side generated unique value"/>
+    <descriptor href="#status" text="defaults to pending"/>  
+  </descriptor>
+  
+  <descriptor id="companyInfo" type="semantic" text="properties for adding company info">
+    <descriptor href="#id" />
+    <descriptor href="#companyId" text="optionally client-side generated unique value"/>
+    <descriptor href="#companyName" text="required"/>
+    <descriptor href="#streetAddress" />
+    <descriptor href="#city" />
+    <descriptor href="#stateProvince" />
+    <descriptor href="#postalCode" />
+    <descriptor href="#country" />
+    <descriptor href="#telephone" />
+    <descriptor href="#email" text="required"/>
+  </descriptor>
+
+  <descriptor id="accountInfo" type="semantic" text="properties for adding account info">
+    <descriptor href="#id" />
+    <descriptor href="#accountId" text="optionally client-side generated unique value"/>
+    <descriptor href="#division" text="defaults to Military"/>
+    <descriptor href="#spendingLimit" text="defaults to 10000"/>
+    <descriptor href="#discountPercentage" text="defaults to 0"/>
+  </descriptor>
+  
+  <descriptor id="actviityInfo" type="semantic" text="properties for adding activity info">
+    <descriptor href="#id" />
+    <descriptor href="#activityId" text="optionally client-side generated unique value" />
+    <descriptor href="#activityType" text="defaults to email"/>
+    <descriptor href="#dateScheduled" />
+    <descriptor href="#notes" />
+  </descriptor>
+  
+  <descriptor id="statusInfo" type="semantic" text="properties for changing the onboarding record status">
+    <descriptor href="#id" />
+    <descriptor href="#status" />  
+  </descriptor>
+  
+</alps>
+
+<!--
+# Onboarding Vocabulary
+
+## Data Elements
+ * id
+ * companyId
+ * companyName
+ * streetAddress
+ * city
+ * stateProvince
+ * postalCode
+ * country
+ * telephone
+ * email
+ * accountId
+ * division (DryGoods, Hardware, Software, Pharmacy, Military)
+ * spendingLimit
+ * discountPercentage
+ * activityId
+ * activityType (email, inperson, phone, letter)
+ * dateScheduled
+ * notes
+ * status (active, pending, closed)
+ * dateCreated
+ * dateUpdated
+
+## Action Elements
+ 
+ * listOnboardings
+ * createOnboarding
+   * id[R]
+ * readOnboarding
+   * id[R]
+ * addCompanyInfo
+   * companyName[R], streetAddress, city, stateProvince, postalCode, country, telephone, email[R], status(pending)[R]
+ * addAccountInfo
+   * division(Military)[R], spendingLimit(1000), discountPercentage(0)
+ * addActivityInfo
+   * activityType(email)[R], dateScheduled, notes
+ * approveOnboarding
+   * status(active)[R]
+ * rejectOnboarding
+   * status(closed)[R]
+-->
+
